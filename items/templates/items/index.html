@@ -1,0 +1,61 @@
+<form action = "/accounts/{{user.id}}" method = "get">
+	<input type = "submit" value = "View Account">
+</form>
+<form action = "/cart" method = "get">
+	<input type = "submit" value = "View Cart">
+</form>
+
+
+<h1>Available Items</h1>
+<form action = "/items" method = "get">
+	<p><input type = "search" name = "search">
+	<input type = "submit" value = "Search"></p>
+</form>
+<div>
+<h4>Filter by Price:</h4>
+<p><a href= "/items?price=1">$0-$50</a><br>
+	<a href= "/items?price=2">$50-$100</a><br>
+	<a href= "/items?price=3">$100-$500</a><br>
+	<a href= "/items?price=4">$500+</a><br></p>
+</div>
+{% if items_page %}
+    <table>
+    	<tr>
+    		<th>Item</th>
+    		<th>Description</th>
+    		<th>Price</th>
+    		<th>Add to Cart</th>
+    	</tr>
+    {% for item in items_page %}
+        <tr>
+        	<td><a href="{% url "items:showitem" item.id %}">{{item.name}}</a></td>
+        <td>{{item.description}}</td>
+        <td>${{item.price}}</td>
+        <td><form method = 'get' action = "{{item.id}}/additem">
+		<input type = 'submit' value = "Add">
+		</form></td>
+		</tr>
+        
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No items are available.</p>
+{% endif %}
+
+<div class = "pagination">
+	<span class = "step-links">
+		{% if items_page.has_previous%}
+			<a href = "?page={{items_page.previous_page_number}}">previous</a>
+		{% endif %}
+
+		<span class = "current">
+			Page {{items_page.number}} of {{ items_page.paginator.num_pages}}
+		</span>
+		{% if items_page.has_next%}
+			<a href = "?page={{items_page.next_page_number}}">next</a>
+		{% endif %}
+	</span>
+</div>
+
+
+

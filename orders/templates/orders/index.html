@@ -1,0 +1,33 @@
+<h2>Your Cart</h2>
+<div>
+{% if order_items %}
+    <table>
+    	<tr>
+    		<th>Item</th>
+    		<th>Description</th>
+    		<th>Price</th>
+    		<th>Remove From Cart</th>
+    	</tr>
+    {% for item in order_items %}
+    	<tr>
+    		<td>{{item.name}}</td>
+    		<td>{{item.description}}</td>
+    		<td>${{item.price}}</td>
+    		<td> <form method = 'post' action = "{{item.id}}/deleteitem">{% csrf_token %}
+    		<input type="submit" value="Delete Item">
+			</form></td>
+		</tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No items in Cart</p>
+{% endif %}
+<h4>Total: ${{total}}</h4>
+<form method = 'get' action = "{% url "orders:payment" %}">
+<input type = 'submit' value = "Checkout">
+</form>
+</div>
+
+<form method = 'get' action = "{% url "items:index" %}">
+<input type = 'submit' value = "Continue Shopping">
+</form>

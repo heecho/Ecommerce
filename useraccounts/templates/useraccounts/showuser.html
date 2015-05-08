@@ -1,0 +1,13 @@
+<h1>Ecommerce Site Accounts</h1>
+<h3>My Account:</h3>
+<a href = "{% url 'useraccounts:logout' %}">Logout</a>
+<p> Username: {{ user.username }}</p>
+<p> First Name: {{user.first_name}}</p>
+<p> Last Name: {{user.last_name}}</p>
+
+<form action = "/items" method = "get">
+	<input type = "submit" value = "Continue Shopping">
+</form>
+<form action = "/cart" method = "get">
+	<input type = "submit" value = "View Cart">
+</form>

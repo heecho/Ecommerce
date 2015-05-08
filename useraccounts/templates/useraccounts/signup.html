@@ -1,0 +1,14 @@
+<html>
+<body>
+	<form action = "/accounts/register" method = "post">{% csrf_token %}
+		<p>Create a new account: (all fields are required)</p>
+		<div>Username:<br><input type = "text" name ='username'></div>
+		<div>First Name:<br><input type = "text" name ='first_name'></div>
+		<div>Last Name:<br><input type = "text" name ='last_name'></div>
+		<div>Email:<br><input type = "text" name ='email'></div>
+		<div>Password:<br><input type = "password" name ='password'></div>
+		
+		<input type = "submit" value = "Sign Up">
+	</form>
+</body>
+</html>

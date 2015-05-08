@@ -1,0 +1,17 @@
+<html>
+<body>
+	<h2>Checkout:</h2>
+	<form action = "/cart/{{order_id}}/processed" method = "post">{% csrf_token %}
+		<p>Please enter your billing information: (all fields are required)</p>
+		<div>First Name:<br><input type = "text" name ='first_name'></div>
+		<div>Last Name:<br><input type = "text" name ='last_name'></div>
+		<div>Street Address:<br><input type = "text" name ='address'></div>
+		<div>City:<br><input type = "text" name ='city'></div>
+		<div>State:<br><input type = "text" name ='state'></div>
+		<div>Zip Code:<br><input type = "text" name ='zip'></div>
+		<div>CC Number:<br><input type = "text" name ='ccnum'></div>
+		
+		<input type = "submit" value = "Place Order">
+	</form>
+</body>
+</html>
